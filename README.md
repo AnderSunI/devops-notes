@@ -6,7 +6,7 @@
 Здесь я собираю шпаргалки, команды и ссылки по Linux, Python, Docker и всему, что учу.
 
 ## Структура
-*   [Linux](./linux-notes.md) — основные команды, bash-скрипты.
+*   [Linux](linux-commands.md)) — основные команды, bash-скрипты.
 *   [Python](./python-notes.md) — полезные сниппеты, виртуальное окружение.
 *   [Docker](./docker-notes.md) — Dockerfile, docker-compose, команды.
 *   [Git](./git-notes.md) — шпаргалка по Git (самому себе).
