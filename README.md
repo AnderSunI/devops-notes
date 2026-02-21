@@ -7,9 +7,9 @@
 
 ## Структура
 *   [LINUX команды](Linux-Commands.md) — основные команды, bash-скрипты.
-*   [Python](./python-notes.md) — полезные сниппеты, виртуальное окружение.
-*   [Docker](./docker-notes.md) — Dockerfile, docker-compose, команды.
-*   [Git](./git-notes.md) — шпаргалка по Git (самому себе).
-*   [Ссылки](./links.md) — полезные ресурсы, туториалы.
+*   [Python](python-notes.md) — полезные сниппеты, виртуальное окружение.
+*   [Docker](docker-notes.md) — Dockerfile, docker-compose, команды.
+*   [Git](git-notes.md) — шпаргалка по Git (самому себе).
+*   [Ссылки](links.md) — полезные ресурсы, туториалы.
 
 
