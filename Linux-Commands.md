@@ -70,22 +70,22 @@
 
 #Подготовка.
 1. Проверьте состояние диска, убедитесь, что он не примонтирован:
-bashlsblk | grep nvme
+2. lsblk | grep nvme
 
 Если указаны примонтированные разделы типа `/dev/nvme0n1p*`, снимите их:
-bashsudo umount /dev/nvme0n1p*
+sudo umount /dev/nvme0n1p*
 
 ## Способ №1: временное отключение через sysfs
 
 Выполните команду для временного удаления устройства (до следующей перезагрузки):
 
-bashecho 1 | sudo tee /sys/class/nvme/nvme0/device/remove
+echo 1 | sudo tee /sys/class/nvme/nvme0/device/remove
 
 Эта команда даёт ядру сигнал забыть о данном устройстве, оно больше не будет доступно системе.
 
 ## Альтернатива: выгрузка модуля драйвера NVMe
 Можно также попробовать убрать модуль драйвера NVMe целиком, отключив таким образом все диски сразу:
-bashsudo rmmod nvme
+bsudo rmmod nvme
 
 Однако учтите, что эта команда отключит *все* подключённые NVMe-диски.
 
@@ -107,7 +107,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvme_core.default_ps_max_latency_us=0"s
 ## Проверка результата
 
 После отключения проверьте статус:
-bashlsblk | grep nvme
+lsblk | grep nvme
 
 Если всё прошло успешно, никаких результатов выдано не будет.
 
@@ -158,21 +158,21 @@ bashlsblk | grep nvme
 | `sudo apt --fix-broken install` | Починить сломанные зависимости |
 | `apt search <слово>` | Найти пакет |
 
-# Работа с `.deb` файлами и решение типичных проблем Bash
+# Работа с `.deb` файлами и решение типичных проблем 
 
 ## Скачивание `.deb` пакета с переименованием
-bashwget -O имя.deb "ссылка_на_файл"
+wget -O имя.deb "ссылка_на_файл"
 
 ---
 
 ## Установка скачанного пакета
-bashsudo apt install ./имя.deb
+sudo apt install ./имя.deb
  
 ---
 
 ### Ошибка прав при установке `.deb`
 Если возникает ошибка вида «файл недоступен для пользователя `_apt`, переместите файл в `/tmp`:**
-bashsudo mv /home/user/пакет.deb /tmp/sudo apt install /tmp/пакет.deb
+sudo mv /home/user/пакет.deb /tmp/sudo apt install /tmp/пакет.deb
 
 
 
@@ -180,11 +180,11 @@ bashsudo mv /home/user/пакет.deb /tmp/sudo apt install /tmp/пакет.deb
 
 ## Проблемы блокировки `APT` (`Could not get lock`)
 При возникновении ошибки блокировки:
-bashsudo kill <PID процесса-блокировщика>
+sudo kill <PID процесса-блокировщика>
 
 
 Или проще всего:
-bashsudo systemctl restart apt-daily.timer && sudo systemctl stop apt-daily.service
+sudo systemctl restart apt-daily.timer && sudo systemctl stop apt-daily.service
 
 **Альтернативное простое решение:** Перезагрузитесь!
 
@@ -204,43 +204,43 @@ bashsudo systemctl restart apt-daily.timer && sudo systemctl stop apt-daily.serv
 #### Шаги для восстановления:
 1. Загрузитесь с Live-флешки Mint.
 2. Определите нужные разделы диска:
-   ```bash
+   ```
    lsblk
    ```
 3. Примонтируйте корневой раздел системы (например, `/dev/sda2`):
-   ```bash
+   ```
    sudo mount /dev/sda2 /mnt
    ```
 4. Если используется UEFI, примонтируйте ESP (обычно `/dev/sda1`):
-   ```bash
+   ```
    sudo mkdir -p /mnt/boot/efi
    sudo mount /dev/sda1 /mnt/boot/efi
    ```
 5. Примонтируйте необходимые системные директории:
-   ```bash
+   ```
    sudo mount --bind /dev /mnt/dev
    sudo mount --bind /proc /mnt/proc
    sudo mount --bind /sys /mnt/sys
    ```
 6. Перейдите в среду `chroot`:
-   ```bash
+   ```
    sudo chroot /mnt
    ```
 7. Установите заново GRUB:
    Для UEFI:
-   ```bash
+   ```
    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ubuntu --recheck
    ```
    Для BIOS (Legacy):
-   ```bash
+   ```
    grub-install --target=i386-pc /dev/sda
    ```
 8. Обновите конфигурацию GRUB:
-   ```bash
+   ```
    update-grub
    ```
 9. Выход и перезагрузка:
-   ```bash
+   ```
    exit
    sudo umount -R /mnt
    sudo reboot
