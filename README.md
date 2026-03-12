@@ -8,6 +8,7 @@
 ## Структура
 *   [LINUX команды](Linux-Commands.md) — основные команды, bash-скрипты.
 *   [Windows команды](Windows-Command.md) - тоже шпаргалка но по винде 
+*   [Script](scripts) - скрипты для автоматизации. 
 *   [Python](python-notes.md) — полезные сниппеты, виртуальное окружение.
 *   [Docker](docker-notes.md) — Dockerfile, docker-compose, команды.
 *   [Git](git-notes.md) — шпаргалка по Git (самому себе).
