@@ -1,3 +1,3 @@
-PowerShell-скрипты для автоматизации
-Create-ADUsers.ps1 — создаёт пользователей в AD из CSV.
-users.csv — пример файла с данными для скрипта.
+Create-ADUsers.ps1 — создаёт пользователей в AD из users.csv.
+
+users.csv — пример входного файла.
